@@ -1,0 +1,85 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Assets/Paper_Pixels/Enemies_reduced.png" type="Texture" id=1]
+[ext_resource path="res://src/scripts/EnemyBee.gd" type="Script" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 32, 0, 8, 8 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 40, 0, 8, 8 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 48, 0, 8, 8 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 56, 0, 8, 8 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 1 )
+region = Rect2( 88, 0, 8, 8 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "idle",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 5 ) ],
+"loop": true,
+"name": "attack",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 2.46864, 2.20118 )
+
+[sub_resource type="CircleShape2D" id=8]
+radius = 4.92555
+
+[sub_resource type="CircleShape2D" id=9]
+radius = 81.5329
+
+[node name="Bee" type="KinematicBody2D"]
+z_index = 2
+collision_layer = 2
+collision_mask = 3
+script = ExtResource( 2 )
+speed = Vector2( 30, 30 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 6 )
+animation = "idle"
+frame = 2
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.113127, -0.509054 )
+shape = SubResource( 7 )
+
+[node name="EnemyBody" type="Area2D" parent="." groups=[
+"enemies",
+]]
+position = Vector2( 0.0611296, -0.122254 )
+collision_layer = 2
+collision_mask = 17
+
+[node name="HitColliderShape" type="CollisionShape2D" parent="EnemyBody"]
+modulate = Color( 0.152941, 0.419608, 0.00392157, 1 )
+position = Vector2( 0.0118825, -0.565974 )
+shape = SubResource( 8 )
+
+[node name="DiscoverArea" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DiscoverArea"]
+position = Vector2( -0.0415783, 0 )
+shape = SubResource( 9 )
+[connection signal="body_entered" from="EnemyBody" to="." method="_on_Enemy_body_entered"]
+[connection signal="body_entered" from="DiscoverArea" to="." method="_on_DiscoverArea_body_entered"]
+[connection signal="body_exited" from="DiscoverArea" to="." method="_on_DiscoverArea_body_exited"]

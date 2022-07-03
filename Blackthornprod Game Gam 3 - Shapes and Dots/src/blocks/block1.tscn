@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/blocks/block.gd" type="Script" id=1]
+[ext_resource path="res://assets/shapes/shape2.png" type="Texture" id=2]
+
+[node name="Block" type="Area2D" groups=[
+"pickable",
+]]
+position = Vector2( 0.8909, -0.8909 )
+collision_layer = 2
+collision_mask = 7
+script = ExtResource( 1 )
+dots_to_spawn = 2
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 28.4358, 29.4909 )
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 49.7706, 39.0953 )
+z_index = 1
+polygon = PoolVector2Array( -46.2667, -34.3671, 4.2306, -33.4232, 4.70255, 18.4899, 5.17448, 18.0179, 4.70254, 18.4899, -44.8509, 18.0179 )
+
+[node name="Tween" type="Tween" parent="."]

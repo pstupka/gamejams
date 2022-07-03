@@ -1,0 +1,256 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://src/levels/play_board.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/background.png" type="Texture" id=2]
+[ext_resource path="res://assets/fonts/Anke Print.TTF" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/menu_button.png" type="Texture" id=4]
+[ext_resource path="res://src/levels/main_level.gd" type="Script" id=5]
+[ext_resource path="res://assets/menu_button_pink.png" type="Texture" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 42
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 42
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 75
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 31
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 43
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 3 )
+
+[node name="MainLevel" type="Node2D"]
+script = ExtResource( 5 )
+block_position = Vector2( 820, 250 )
+
+[node name="background" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+centered = false
+
+[node name="scoreLabel" type="Label" parent="."]
+margin_left = 47.4281
+margin_top = 73.3646
+margin_right = 281.428
+margin_bottom = 121.365
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Score: 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="multiplierLabel" type="Label" parent="."]
+margin_left = 466.869
+margin_top = 73.3646
+margin_right = 700.869
+margin_bottom = 121.365
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Multiplier: x1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayBoard" parent="." instance=ExtResource( 1 )]
+position = Vector2( 19.7575, 124.302 )
+
+[node name="TimeControl" type="Node2D" parent="."]
+
+[node name="CountdownTimer" type="Timer" parent="TimeControl"]
+
+[node name="CountdownLabel" type="Label" parent="TimeControl"]
+margin_left = 198.265
+margin_top = 533.768
+margin_right = 426.265
+margin_bottom = 581.768
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Time left: 60"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TitleLabel" type="Label" parent="."]
+margin_left = 334.988
+margin_top = 14.4157
+margin_right = 723.988
+margin_bottom = 62.4157
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "SHAPES AND DOTS"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameOverLabel" type="Label" parent="."]
+visible = false
+margin_left = 198.265
+margin_top = 283.989
+margin_right = 561.265
+margin_bottom = 367.989
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "GAME OVER"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Credits" type="Label" parent="."]
+visible = false
+margin_left = 59.0
+margin_top = 171.551
+margin_right = 701.0
+margin_bottom = 482.551
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Game created for Blackthornprod GAME JAM #3
+
+Programming:  Stup
+Art:  Stup
+Music:  beepbox . co
+Font :  Anke Print
+Sound effects:  My pen
+Engine:  Godot 3 . 2 . 2"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Rules" type="Label" parent="."]
+visible = false
+margin_left = 59.7551
+margin_top = 154.388
+margin_right = 698.755
+margin_bottom = 495.388
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "
+x Earn as many points as possible in the time given. 
+x Drag and drop the shapes onto dots. 
+x Mind the red ones though! They are very time consuming. 
+x LESS time you will have with MORE red dots collected"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainMenu" type="Control" parent="."]
+margin_left = 749.0
+margin_top = 124.302
+margin_right = 984.0
+margin_bottom = 533.302
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MenuLabel" type="Label" parent="MainMenu"]
+margin_left = 33.8776
+margin_top = -11.0
+margin_right = 203.878
+margin_bottom = 73.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "MENU"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartButton" type="TextureButton" parent="MainMenu"]
+margin_top = 90.7348
+margin_right = 235.0
+margin_bottom = 175.735
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 6 )
+texture_focused = ExtResource( 6 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartLabel" type="Label" parent="MainMenu/StartButton"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -61.5101
+margin_top = 15.6123
+margin_right = 49.4899
+margin_bottom = 64.6123
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Start"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CreditsButton" type="TextureButton" parent="MainMenu"]
+margin_left = -1.1344
+margin_top = 300.778
+margin_right = 233.866
+margin_bottom = 381.778
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 6 )
+texture_focused = ExtResource( 6 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CreditsLabel" type="Label" parent="MainMenu/CreditsButton"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -69.3555
+margin_top = 12.2449
+margin_right = 69.6445
+margin_bottom = 70.2449
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Credits"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RulesButton" type="TextureButton" parent="MainMenu"]
+margin_left = 0.00012207
+margin_top = 197.511
+margin_right = 235.0
+margin_bottom = 278.511
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 6 )
+texture_focused = ExtResource( 6 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RulesLabel" type="Label" parent="MainMenu/RulesButton"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -62.6326
+margin_top = 12.7348
+margin_right = 48.3674
+margin_bottom = 61.7348
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Rules"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="timeout" from="TimeControl/CountdownTimer" to="." method="_on_CountdownTimer_timeout"]
+[connection signal="pressed" from="MainMenu/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="MainMenu/CreditsButton" to="." method="_on_CreditsButton_pressed"]
+[connection signal="pressed" from="MainMenu/RulesButton" to="." method="_on_RulesButton_pressed"]

@@ -1,0 +1,218 @@
+[gd_scene load_steps=41 format=2]
+
+[ext_resource path="res://Assets/Player/Player_idle.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Player/Player_jump.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Player/Player_run.png" type="Texture" id=3]
+[ext_resource path="res://src/scripts/Player.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Audio/audio_jump.wav" type="AudioStream" id=5]
+[ext_resource path="res://src/Misc/Footstep.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Misc/Gun.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Misc/Bullet.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/Player/Player_die.png" type="Texture" id=9]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 2.8023, 3.93391 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 6, 8 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 6, 0, 6, 8 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 12, 0, 6, 8 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 1 )
+region = Rect2( 18, 0, 6, 8 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 6, 8 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 9 )
+region = Rect2( 6, 0, 6, 8 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 9 )
+region = Rect2( 12, 0, 6, 8 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 9 )
+region = Rect2( 18, 0, 6, 8 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 9 )
+region = Rect2( 24, 0, 6, 8 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 9 )
+region = Rect2( 30, 0, 6, 8 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 9 )
+region = Rect2( 36, 0, 6, 8 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 9 )
+region = Rect2( 42, 0, 6, 8 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 9 )
+region = Rect2( 48, 0, 6, 8 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 9 )
+region = Rect2( 54, 0, 6, 8 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 8, 8 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 3 )
+region = Rect2( 8, 0, 8, 8 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 3 )
+region = Rect2( 16, 0, 8, 8 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 3 )
+region = Rect2( 24, 0, 8, 8 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 3 )
+region = Rect2( 32, 0, 8, 8 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 3 )
+region = Rect2( 40, 0, 8, 8 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 3 )
+region = Rect2( 48, 0, 8, 8 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 3 )
+region = Rect2( 56, 0, 8, 8 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 6, 8 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 2 )
+region = Rect2( 6, 0, 6, 8 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 2 )
+region = Rect2( 12, 0, 6, 8 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 2 )
+region = Rect2( 18, 0, 6, 8 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 2 )
+region = Rect2( 6, 0, 6, 8 )
+
+[sub_resource type="SpriteFrames" id=29]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "idle",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ) ],
+"loop": false,
+"name": "die",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ) ],
+"loop": true,
+"name": "run",
+"speed": 16.0
+}, {
+"frames": [ SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ) ],
+"loop": true,
+"name": "jump",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 28 ) ],
+"loop": true,
+"name": "fall",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=30]
+extents = Vector2( 5.21289, 5.5779 )
+
+[sub_resource type="CircleShape2D" id=31]
+radius = 39.6471
+
+[node name="Player" type="KinematicBody2D"]
+z_index = 2
+collision_mask = 8
+script = ExtResource( 4 )
+foot_step = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 29 )
+animation = "die"
+frame = 9
+playing = true
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2( 1.90735e-06, -15 )
+current = true
+zoom = Vector2( 0.9, 0.9 )
+limit_bottom = 300
+limit_smoothed = true
+smoothing_enabled = true
+smoothing_speed = 2.0
+offset_v = -1.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
+margin_left = -104.0
+margin_top = -55.0
+margin_right = 142.0
+margin_bottom = -15.0
+text = "TEST"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[node name="Gun" parent="." instance=ExtResource( 7 )]
+position = Vector2( 0.06494, 0.00157201 )
+_bullet = ExtResource( 8 )
+
+[node name="PlayerBody" type="Area2D" parent="." groups=[
+"PlayerArea",
+]]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBody"]
+position = Vector2( 0, 0.00157201 )
+shape = SubResource( 30 )
+
+[node name="PickArea" type="Area2D" parent="." groups=[
+"pick",
+]]
+collision_mask = 32
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="PickArea"]
+shape = SubResource( 31 )
+[connection signal="area_entered" from="PlayerBody" to="." method="_on_Player_area_entered"]
+[connection signal="body_entered" from="PlayerBody" to="." method="_on_Player_body_entered"]
