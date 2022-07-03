@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/362205__taranp__horn-fail-wahwah-2.wav-311482ed1e6a7e0e78d45531e6ce304e.sample"
+
+[deps]
+
+source_file="res://assets/audio/362205__taranp__horn-fail-wahwah-2.wav"
+dest_files=[ "res://.import/362205__taranp__horn-fail-wahwah-2.wav-311482ed1e6a7e0e78d45531e6ce304e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

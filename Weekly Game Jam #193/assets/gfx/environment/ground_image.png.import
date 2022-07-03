@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+path="res://.import/ground_image.png-5b0462d0e96da0c0fcf893946893ce36.image"
+
+[deps]
+
+source_file="res://assets/gfx/environment/ground_image.png"
+dest_files=[ "res://.import/ground_image.png-5b0462d0e96da0c0fcf893946893ce36.image" ]
+
+[params]
+

@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/audio/tone.wav" type="AudioStream" id=1]
+[ext_resource path="res://assets/1bitplatformerpack/Tiles/Transparent/tile_0102.png" type="Texture" id=2]
+[ext_resource path="res://src/playground/ToneStoneRigid.gd" type="Script" id=3]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 4.0
+height = 5.0
+
+[node name="ToneStoneRigid" type="RigidBody2D" groups=["ToneStone"]]
+collision_layer = 2
+collision_mask = 3
+mode = 2
+mass = 10.0
+gravity_scale = 2.0
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 200, 0 )
+collision_mask = 4
+
+[node name="ModulationTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_AudioStreamPlayer_finished"]
+[connection signal="timeout" from="ModulationTimer" to="." method="_on_ModulationTimer_timeout"]

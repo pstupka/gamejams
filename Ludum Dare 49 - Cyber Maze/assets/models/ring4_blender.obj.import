@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/ring4_blender.obj-173a14f1ad15b9bd5388cefbf6e0f4a7.mesh"
+
+[deps]
+
+files=[ "res://.import/ring4_blender.obj-173a14f1ad15b9bd5388cefbf6e0f4a7.mesh" ]
+
+source_file="res://assets/models/ring4_blender.obj"
+dest_files=[ "res://.import/ring4_blender.obj-173a14f1ad15b9bd5388cefbf6e0f4a7.mesh", "res://.import/ring4_blender.obj-173a14f1ad15b9bd5388cefbf6e0f4a7.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

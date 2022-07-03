@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/468397__onderwish__blade-runner-type-ambient.mp3-7ce1aa0ee483d331a9345b7142b6b6c5.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/468397__onderwish__blade-runner-type-ambient.mp3"
+dest_files=[ "res://.import/468397__onderwish__blade-runner-type-ambient.mp3-7ce1aa0ee483d331a9345b7142b6b6c5.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

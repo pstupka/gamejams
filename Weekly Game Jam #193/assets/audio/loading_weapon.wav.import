@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/loading_weapon.wav-501f47c871f964694db0d4c8c6bcc34d.sample"
+
+[deps]
+
+source_file="res://assets/audio/loading_weapon.wav"
+dest_files=[ "res://.import/loading_weapon.wav-501f47c871f964694db0d4c8c6bcc34d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

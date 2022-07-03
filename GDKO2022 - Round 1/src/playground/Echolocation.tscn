@@ -1,0 +1,101 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://src/playground/Echolocation.gd" type="Script" id=1]
+[ext_resource path="res://src/playground/CaveWall.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/playground/Player.tscn" type="PackedScene" id=3]
+
+[sub_resource type="Environment" id=14]
+background_mode = 4
+glow_enabled = true
+glow_strength = 0.02
+
+[sub_resource type="CanvasItemMaterial" id=11]
+light_mode = 2
+
+[sub_resource type="OpenSimplexNoise" id=15]
+octaves = 5
+period = 16.0
+persistence = 1.0
+
+[sub_resource type="NoiseTexture" id=16]
+flags = 0
+noise = SubResource( 15 )
+
+[sub_resource type="OpenSimplexNoise" id=17]
+period = 95.1
+
+[sub_resource type="NoiseTexture" id=18]
+noise = SubResource( 17 )
+
+[node name="Echolocation" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 14 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+light_mask = 2
+margin_left = -265.0
+margin_top = -195.0
+margin_right = 883.0
+margin_bottom = 617.0
+color = Color( 0.490196, 0.490196, 0.490196, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="Sprite" parent="."]
+modulate = Color( 0.054902, 0.054902, 0.054902, 1 )
+self_modulate = Color( 0.258824, 0.258824, 0.258824, 1 )
+material = SubResource( 11 )
+position = Vector2( 299, 237 )
+scale = Vector2( 2, 2 )
+texture = SubResource( 16 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.0117647, 0.0117647, 0.0117647, 1 )
+
+[node name="Light2D" type="Light2D" parent="."]
+visible = false
+light_mask = 3
+position = Vector2( 139, 76 )
+scale = Vector2( 3, 3 )
+texture = SubResource( 18 )
+color = Color( 0, 1, 0.952941, 1 )
+energy = 2.84
+shadow_enabled = true
+
+[node name="Walls" type="Node2D" parent="."]
+position = Vector2( 18, 185 )
+
+[node name="CaveWall" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( -12, 127 )
+points = PoolVector2Array( -71, 56, -70, 50, 145, 63, 215.506, 58.5934, 241, 57, 239, 37, 260, 36, 260, 18, 279, 19, 279, -11, 307, -10, 306, -31, 336, -29, 581.946, -17.0443, 624, -15, 622, -195, 838, -259, 846, 74, 794, 232 )
+
+[node name="CaveWall2" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 7, -184 )
+points = PoolVector2Array( 655, -170, 582, 49, 547, 80, 518.123, 71.8183, 487, 63, 485, 79, 482, 109, 451, 63, 425, 39, 405, 36, 402, 51, 405, 67, 365, 54, 349, 85, 323.301, 101.521, 293, 121, 298, 49, 264, 43, 254, 101, 248, 53, 201, 39, 227, 125, 194, 67, 180, 45, 163.168, 87.8937, 149, 124, 150, 46, 157, -6, 120, -37, 14, -39, -16, -2, -54, 81, -52, 164, -22, 176, 146, 173, 206, 186, 183, 194, 167, 203, -61, 202, -255, 152, -241, 32, -130, -168 )
+
+[node name="CaveWall4" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( -82, -13 )
+points = PoolVector2Array( 12, 33, 21, 77, 88.4491, 83.5436, 155, 90, 151.547, 112.195, 148, 135, 173, 137, 179, 144, 162, 148, 109, 132, 0, 180 )
+
+[node name="CaveWall5" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( -82, -13 )
+points = PoolVector2Array( 417, 56, 420, 31, 533, 44, 532, 82, 416, 75, 417, 56 )
+
+[node name="CaveWall6" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( -82, -13 )
+points = PoolVector2Array( 606, 83, 665, 86, 665, 108, 586, 103, 588, 82, 606, 83 )
+
+[node name="CaveWall7" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( -347, -94 )
+points = PoolVector2Array( 606, 83, 639, 85, 639, 105, 586, 103, 588, 82, 606, 83 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 11, 226 )
+SPEED = 100.0
+GRAVITY = 3.0
+JUMP_SPEED = 250.0
+SPRITE_MODULATION_PEAK = 40.0
+SPRITE_MODULATION_FADE_SPEED = 5.0

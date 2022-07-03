@@ -1,0 +1,155 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://assets/fonts/Kenney Blocks.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/gfx/environment/ground.png" type="Texture" id=2]
+[ext_resource path="res://assets/fonts/Kenney Pixel Square.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://source/menu/GameOverScreen.gd" type="Script" id=4]
+[ext_resource path="res://assets/ui/button_border_hover.png" type="Texture" id=5]
+[ext_resource path="res://assets/ui/button_border.png" type="Texture" id=6]
+[ext_resource path="res://assets/ui/button_border_pressed.png" type="Texture" id=7]
+[ext_resource path="res://assets/ui/player_border.png" type="Texture" id=8]
+[ext_resource path="res://assets/gfx/characters/soldier.png" type="Texture" id=12]
+[ext_resource path="res://assets/gfx/characters/character2.png" type="Texture" id=13]
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 80
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxTexture" id=4]
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 320, 48 )
+
+[sub_resource type="StyleBoxTexture" id=5]
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 320, 48 )
+
+[sub_resource type="StyleBoxTexture" id=6]
+texture = ExtResource( 6 )
+region_rect = Rect2( 0, 0, 320, 48 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 32
+outline_size = 1
+extra_spacing_top = 5
+extra_spacing_bottom = 10
+font_data = ExtResource( 3 )
+
+[node name="GameOverScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 1.18921
+margin_bottom = 1.18921
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 2 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_top = 30.0
+margin_right = -30.0
+margin_bottom = -30.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_right = 964.0
+margin_bottom = 540.0
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+margin_right = 964.0
+margin_bottom = 96.0
+custom_fonts/font = SubResource( 1 )
+text = "GAME OVER"
+align = 1
+
+[node name="WinnerName" type="Label" parent="MarginContainer/VBoxContainer"]
+margin_top = 100.0
+margin_right = 964.0
+margin_bottom = 220.0
+custom_fonts/font = SubResource( 2 )
+text = "Player 2 wins"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 224.0
+margin_right = 964.0
+margin_bottom = 540.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 30
+
+[node name="Margin1" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 301.0
+margin_bottom = 316.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 331.0
+margin_right = 632.0
+margin_bottom = 316.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 20
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="MarginContainer/VBoxContainer/HBoxContainer/ButtonsContainer"]
+margin_right = 301.0
+margin_bottom = 233.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 8 )
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="Winner1" type="Sprite" parent="MarginContainer/VBoxContainer/HBoxContainer/ButtonsContainer/NinePatchRect2"]
+position = Vector2( 151, 116 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 12 )
+
+[node name="Winner2" type="Sprite" parent="MarginContainer/VBoxContainer/HBoxContainer/ButtonsContainer/NinePatchRect2"]
+visible = false
+position = Vector2( 151, 116 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 13 )
+
+[node name="MainMenuButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/ButtonsContainer" groups=[
+"ui_buttons",
+]]
+margin_top = 253.0
+margin_right = 301.0
+margin_bottom = 316.0
+rect_pivot_offset = Vector2( 1335.96, -283.591 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "main menu"
+
+[node name="Margin2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 662.0
+margin_right = 964.0
+margin_bottom = 316.0
+size_flags_horizontal = 3
+size_flags_vertical = 3

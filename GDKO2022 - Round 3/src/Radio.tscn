@@ -1,0 +1,133 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://assets/audio/bensound-thejazzpiano.mp3" type="AudioStream" id=1]
+[ext_resource path="res://src/Label3D.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Radio.gd" type="Script" id=3]
+[ext_resource path="res://assets/textures/music_notes.png" type="Texture" id=4]
+
+[sub_resource type="Gradient" id=20]
+offsets = PoolRealArray( 0, 0.772727, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 0.992157, 0.992157, 0.992157, 1, 0.984314, 0.984314, 0.984314, 0 )
+
+[sub_resource type="GradientTexture" id=21]
+gradient = SubResource( 20 )
+
+[sub_resource type="Curve" id=15]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.304207, 0.846591 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=16]
+width = 100
+curve = SubResource( 15 )
+
+[sub_resource type="ParticlesMaterial" id=17]
+lifetime_randomness = 0.56
+emission_shape = 2
+emission_box_extents = Vector3( 0.2, 0.2, 0.2 )
+direction = Vector3( 0, 1, 0 )
+spread = 99.88
+gravity = Vector3( 0, 1, 0 )
+initial_velocity = 1.0
+scale_curve = SubResource( 16 )
+color_ramp = SubResource( 21 )
+anim_offset = 1.0
+anim_offset_random = 1.0
+
+[sub_resource type="SpatialMaterial" id=18]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_billboard_mode = 3
+particles_anim_h_frames = 8
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 4 )
+
+[sub_resource type="QuadMesh" id=19]
+material = SubResource( 18 )
+size = Vector2( 0.5, 0.5 )
+
+[sub_resource type="BoxShape" id=12]
+extents = Vector3( 0.5, 0.5, 0.5 )
+
+[sub_resource type="Gradient" id=27]
+offsets = PoolRealArray( 0, 0.692308 )
+colors = PoolColorArray( 1, 1, 1, 0.160784, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=28]
+gradient = SubResource( 27 )
+
+[sub_resource type="Curve" id=29]
+max_value = 2.0
+_data = [ Vector2( 0, 0.0147727 ), 0.0, 0.0, 0, 0, Vector2( 0.608414, 0.843182 ), 4.9761, 4.9761, 0, 0, Vector2( 1, 1.64318 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=23]
+curve = SubResource( 29 )
+
+[sub_resource type="ParticlesMaterial" id=24]
+gravity = Vector3( 0, 0, 0 )
+scale_curve = SubResource( 23 )
+color_ramp = SubResource( 28 )
+
+[sub_resource type="SpatialMaterial" id=25]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+albedo_color = Color( 1, 0.956863, 0.858824, 1 )
+
+[sub_resource type="SphereMesh" id=26]
+material = SubResource( 25 )
+radius = 0.5
+height = 1.0
+
+[sub_resource type="BoxShape" id=30]
+extents = Vector3( 2, 0.5, 2 )
+
+[node name="Radio" type="StaticBody" groups=["Interactable"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5.94309 )
+script = ExtResource( 3 )
+
+[node name="Particles" type="Particles" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.943351 )
+amount = 2
+explosiveness = 0.15
+randomness = 0.33
+fract_delta = false
+visibility_aabb = AABB( -2.02525, -2.00322, -1.62657, 4.05049, 4.00645, 3.25314 )
+process_material = SubResource( 17 )
+draw_pass_1 = SubResource( 19 )
+
+[node name="Label3D" parent="." instance=ExtResource( 2 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -4.76837e-07 )
+visible = false
+label_text = "Radio"
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0108624, -0.0258522, 0.0152826 )
+stream = ExtResource( 1 )
+autoplay = true
+max_distance = 10.0
+bus = "Radio"
+emission_angle_enabled = true
+emission_angle_degrees = 60.0
+emission_angle_filter_attenuation_db = -15.0
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 12 )
+
+[node name="DiscoverArea" type="Area" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="DiscoverParticles" type="Particles" parent="DiscoverArea"]
+emitting = false
+amount = 4
+lifetime = 2.0
+process_material = SubResource( 24 )
+draw_pass_1 = SubResource( 26 )
+
+[node name="CollisionShape" type="CollisionShape" parent="DiscoverArea"]
+shape = SubResource( 30 )
+
+[connection signal="body_entered" from="DiscoverArea" to="." method="_on_DiscoverArea_body_entered"]
+[connection signal="body_exited" from="DiscoverArea" to="." method="_on_DiscoverArea_body_exited"]

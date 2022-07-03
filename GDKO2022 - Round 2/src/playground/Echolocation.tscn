@@ -1,0 +1,378 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://src/playground/Echolocation.gd" type="Script" id=1]
+[ext_resource path="res://src/playground/CaveWall.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/playground/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/audio/G2.wav" type="AudioStream" id=5]
+[ext_resource path="res://src/playground/ToneStoneRigid.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/audio/G1.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/audio/F1.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/audio/F2.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/audio/F3.wav" type="AudioStream" id=10]
+[ext_resource path="res://assets/audio/A2.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/audio/D3.wav" type="AudioStream" id=12]
+[ext_resource path="res://assets/audio/C3.wav" type="AudioStream" id=13]
+[ext_resource path="res://assets/audio/A1.wav" type="AudioStream" id=14]
+
+[sub_resource type="Environment" id=14]
+background_mode = 4
+glow_enabled = true
+glow_strength = 0.02
+
+[sub_resource type="CanvasItemMaterial" id=11]
+light_mode = 2
+
+[sub_resource type="OpenSimplexNoise" id=15]
+octaves = 2
+period = 5.0
+persistence = 1.0
+
+[sub_resource type="NoiseTexture" id=16]
+flags = 0
+width = 1536
+noise = SubResource( 15 )
+
+[sub_resource type="Gradient" id=17]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=18]
+gradient = SubResource( 17 )
+
+[node name="Echolocation" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 14 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+light_mask = 2
+margin_left = -265.0
+margin_top = -195.0
+margin_right = 883.0
+margin_bottom = 617.0
+rect_scale = Vector2( 3, 1 )
+color = Color( 0.490196, 0.490196, 0.490196, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="Sprite" parent="."]
+modulate = Color( 0.054902, 0.054902, 0.054902, 1 )
+self_modulate = Color( 0.258824, 0.258824, 0.258824, 1 )
+material = SubResource( 11 )
+position = Vector2( 1212, 181 )
+scale = Vector2( 2, 2 )
+texture = SubResource( 16 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.0117647, 0.0117647, 0.0117647, 1 )
+
+[node name="Light2D" type="Light2D" parent="."]
+visible = false
+light_mask = 3
+position = Vector2( 191, 258 )
+scale = Vector2( 3, 671 )
+texture = SubResource( 18 )
+color = Color( 0, 1, 0.952941, 1 )
+energy = 2.84
+shadow_enabled = true
+
+[node name="Walls" type="Node2D" parent="."]
+process_priority = -7
+position = Vector2( 18, 185 )
+
+[node name="CaveWall" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( -12, 127 )
+points = PoolVector2Array( 37, 186, 144, -295, 161, -181, 143, 7, 146, 96, 249, 101, 285, 7, 481, 7, 865.647, 7, 906, -36, 930, -38, 954.539, 7, 1320.82, 6.99997, 1461, -6, 1555, -24, 1483, -186, 1782, -236, 1748, 219 )
+
+[node name="CaveWall2" parent="Walls" instance=ExtResource( 2 )]
+position = Vector2( 2010, -141 )
+points = PoolVector2Array( -477, -144, -545, 82, -608, 153, -613, 213, -676, 160, -729, 68, -822, 44, -860, 77, -850, 145, -882, 173, -961, 109, -983, 181, -1049, 133, -1074, 70, -1113, 164, -1154, 100, -1178, 28, -1195, 44, -1210, 100, -1310, 76, -1309, 116, -1375, 49, -1387, 166, -1394, 162, -1388, 42, -1500, 54, -1497, 142, -1535, 155, -1558, 49, -1621, -43, -1718, -77, -1814, -67, -1875, -29, -2150, -69, -2112, -349 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 346, 265 )
+collision_mask = 5
+SPEED = 100.0
+GRAVITY = 3.0
+JUMP_SPEED = 250.0
+SPRITE_MODULATION_PEAK = 80.0
+SPRITE_MODULATION_FADE_SPEED = 2.0
+
+[node name="ToneStones" type="Node2D" parent="."]
+position = Vector2( 300, 279 )
+
+[node name="StoneG2" parent="ToneStones" instance=ExtResource( 6 )]
+position = Vector2( 150, 0 )
+AUDIO_SAMPLE = ExtResource( 5 )
+INITIAL_SPRITE_MODULATION = Color( 0, 52.2941, 0, 1 )
+
+[node name="StoneG1" parent="ToneStones" instance=ExtResource( 6 )]
+position = Vector2( 150, 20 )
+AUDIO_SAMPLE = ExtResource( 7 )
+INITIAL_SPRITE_MODULATION = Color( 50, 0, 50, 1 )
+
+[node name="StoneF2" parent="ToneStones" instance=ExtResource( 6 )]
+position = Vector2( 225, 1 )
+AUDIO_SAMPLE = ExtResource( 9 )
+INITIAL_SPRITE_MODULATION = Color( 0, 75.4549, 0.729412, 1 )
+
+[node name="StoneF1" parent="ToneStones" instance=ExtResource( 6 )]
+position = Vector2( 225, 20 )
+AUDIO_SAMPLE = ExtResource( 8 )
+INITIAL_SPRITE_MODULATION = Color( 80.35, 0, 0.56, 1 )
+
+[node name="StoneF3" parent="ToneStones" instance=ExtResource( 6 )]
+position = Vector2( 250, 20 )
+AUDIO_SAMPLE = ExtResource( 10 )
+INITIAL_SPRITE_MODULATION = Color( 15.62, 0, 0, 1 )
+
+[node name="StoneG2_2" parent="ToneStones" instance=ExtResource( 6 )]
+position = Vector2( 300, 0 )
+AUDIO_SAMPLE = ExtResource( 5 )
+INITIAL_SPRITE_MODULATION = Color( 0, 50, 0, 1 )
+
+[node name="StoneG1_2" parent="ToneStones" instance=ExtResource( 6 )]
+position = Vector2( 300, 20 )
+AUDIO_SAMPLE = ExtResource( 7 )
+INITIAL_SPRITE_MODULATION = Color( 50, 0, 50, 1 )
+
+[node name="StoneA2" parent="ToneStones" instance=ExtResource( 6 )]
+position = Vector2( 325, 20 )
+AUDIO_SAMPLE = ExtResource( 11 )
+INITIAL_SPRITE_MODULATION = Color( 78.61, 79.65, 76.3, 1 )
+
+[node name="StoneF3_2" parent="ToneStones" instance=ExtResource( 6 )]
+position = Vector2( 375, 20 )
+AUDIO_SAMPLE = ExtResource( 10 )
+INITIAL_SPRITE_MODULATION = Color( 15.62, 0, 0, 1 )
+
+[node name="StoneF2_2" parent="ToneStones" instance=ExtResource( 6 )]
+position = Vector2( 400, 1 )
+AUDIO_SAMPLE = ExtResource( 9 )
+INITIAL_SPRITE_MODULATION = Color( 0, 75.4549, 0.729412, 1 )
+
+[node name="StoneF1_2" parent="ToneStones" instance=ExtResource( 6 )]
+position = Vector2( 400, 20 )
+AUDIO_SAMPLE = ExtResource( 8 )
+INITIAL_SPRITE_MODULATION = Color( 80.35, 0, 0.56, 1 )
+
+[node name="StoneD3" parent="ToneStones" instance=ExtResource( 6 )]
+position = Vector2( 425, 20 )
+AUDIO_SAMPLE = ExtResource( 12 )
+INITIAL_SPRITE_MODULATION = Color( 0.68, 83.14, 0.08, 1 )
+
+[node name="StoneC3" parent="ToneStones" instance=ExtResource( 6 )]
+position = Vector2( 450, -20 )
+AUDIO_SAMPLE = ExtResource( 13 )
+INITIAL_SPRITE_MODULATION = Color( 0.32, 45.93, 0.94, 1 )
+
+[node name="StoneG2_3" parent="ToneStones" instance=ExtResource( 6 )]
+position = Vector2( 450, 0 )
+AUDIO_SAMPLE = ExtResource( 5 )
+INITIAL_SPRITE_MODULATION = Color( 0, 50, 0, 1 )
+
+[node name="StoneG1_3" parent="ToneStones" instance=ExtResource( 6 )]
+position = Vector2( 450, 20 )
+AUDIO_SAMPLE = ExtResource( 7 )
+INITIAL_SPRITE_MODULATION = Color( 50, 0, 50, 1 )
+
+[node name="StoneA2_2" parent="ToneStones" instance=ExtResource( 6 )]
+position = Vector2( 475, 0 )
+AUDIO_SAMPLE = ExtResource( 11 )
+INITIAL_SPRITE_MODULATION = Color( 78.61, 79.65, 76.3, 1 )
+
+[node name="StoneA1" parent="ToneStones" instance=ExtResource( 6 )]
+position = Vector2( 475, 21 )
+AUDIO_SAMPLE = ExtResource( 14 )
+INITIAL_SPRITE_MODULATION = Color( 0.68, 45.34, 100, 1 )
+
+[node name="StoneF3_3" parent="ToneStones" instance=ExtResource( 6 )]
+position = Vector2( 500, 20 )
+AUDIO_SAMPLE = ExtResource( 10 )
+INITIAL_SPRITE_MODULATION = Color( 15.62, 0, 0, 1 )
+
+[node name="ToneStones2" type="Node2D" parent="."]
+position = Vector2( 293, 356 )
+
+[node name="StoneG2" parent="ToneStones2" instance=ExtResource( 6 )]
+position = Vector2( -40, -52 )
+AUDIO_SAMPLE = ExtResource( 5 )
+INITIAL_SPRITE_MODULATION = Color( 0, 52.2941, 0, 1 )
+
+[node name="StoneG1" parent="ToneStones2" instance=ExtResource( 6 )]
+position = Vector2( -95, -28 )
+AUDIO_SAMPLE = ExtResource( 7 )
+INITIAL_SPRITE_MODULATION = Color( 50, 0, 50, 1 )
+
+[node name="StoneF2" parent="ToneStones2" instance=ExtResource( 6 )]
+position = Vector2( -67, -22 )
+AUDIO_SAMPLE = ExtResource( 9 )
+INITIAL_SPRITE_MODULATION = Color( 0, 75.4549, 0.729412, 1 )
+
+[node name="StoneF1" parent="ToneStones2" instance=ExtResource( 6 )]
+position = Vector2( -120, -34 )
+AUDIO_SAMPLE = ExtResource( 8 )
+INITIAL_SPRITE_MODULATION = Color( 80.35, 0, 0.56, 1 )
+
+[node name="StoneF3" parent="ToneStones2" instance=ExtResource( 6 )]
+position = Vector2( -77, -86 )
+AUDIO_SAMPLE = ExtResource( 10 )
+INITIAL_SPRITE_MODULATION = Color( 15.62, 0, 0, 1 )
+
+[node name="StoneG2_2" parent="ToneStones2" instance=ExtResource( 6 )]
+position = Vector2( -120, -68 )
+AUDIO_SAMPLE = ExtResource( 5 )
+INITIAL_SPRITE_MODULATION = Color( 0, 50, 0, 1 )
+
+[node name="StoneG1_2" parent="ToneStones2" instance=ExtResource( 6 )]
+position = Vector2( -48, -64 )
+AUDIO_SAMPLE = ExtResource( 7 )
+INITIAL_SPRITE_MODULATION = Color( 50, 0, 50, 1 )
+
+[node name="StoneA2" parent="ToneStones2" instance=ExtResource( 6 )]
+position = Vector2( -109, -103 )
+AUDIO_SAMPLE = ExtResource( 11 )
+INITIAL_SPRITE_MODULATION = Color( 78.61, 79.65, 76.3, 1 )
+
+[node name="StoneF3_2" parent="ToneStones2" instance=ExtResource( 6 )]
+position = Vector2( -85, -64 )
+AUDIO_SAMPLE = ExtResource( 10 )
+INITIAL_SPRITE_MODULATION = Color( 15.62, 0, 0, 1 )
+
+[node name="StoneF2_2" parent="ToneStones2" instance=ExtResource( 6 )]
+position = Vector2( -75, -35 )
+AUDIO_SAMPLE = ExtResource( 9 )
+INITIAL_SPRITE_MODULATION = Color( 0, 75.4549, 0.729412, 1 )
+
+[node name="StoneF1_2" parent="ToneStones2" instance=ExtResource( 6 )]
+position = Vector2( -110, -77 )
+AUDIO_SAMPLE = ExtResource( 8 )
+INITIAL_SPRITE_MODULATION = Color( 80.35, 0, 0.56, 1 )
+
+[node name="StoneD3" parent="ToneStones2" instance=ExtResource( 6 )]
+position = Vector2( -70, -110 )
+AUDIO_SAMPLE = ExtResource( 12 )
+INITIAL_SPRITE_MODULATION = Color( 0.68, 83.14, 0.08, 1 )
+
+[node name="StoneC3" parent="ToneStones2" instance=ExtResource( 6 )]
+position = Vector2( -51, -37 )
+AUDIO_SAMPLE = ExtResource( 13 )
+INITIAL_SPRITE_MODULATION = Color( 0.32, 45.93, 0.94, 1 )
+
+[node name="StoneG2_3" parent="ToneStones2" instance=ExtResource( 6 )]
+position = Vector2( -95, -86 )
+AUDIO_SAMPLE = ExtResource( 5 )
+INITIAL_SPRITE_MODULATION = Color( 0, 50, 0, 1 )
+
+[node name="StoneG1_3" parent="ToneStones2" instance=ExtResource( 6 )]
+position = Vector2( -57, -88 )
+AUDIO_SAMPLE = ExtResource( 7 )
+INITIAL_SPRITE_MODULATION = Color( 50, 0, 50, 1 )
+
+[node name="StoneA2_2" parent="ToneStones2" instance=ExtResource( 6 )]
+position = Vector2( -95, -47 )
+AUDIO_SAMPLE = ExtResource( 11 )
+INITIAL_SPRITE_MODULATION = Color( 78.61, 79.65, 76.3, 1 )
+
+[node name="StoneA1" parent="ToneStones2" instance=ExtResource( 6 )]
+position = Vector2( -109, -55 )
+AUDIO_SAMPLE = ExtResource( 14 )
+INITIAL_SPRITE_MODULATION = Color( 0.68, 45.34, 100, 1 )
+
+[node name="StoneF3_3" parent="ToneStones2" instance=ExtResource( 6 )]
+position = Vector2( -72, -56 )
+AUDIO_SAMPLE = ExtResource( 10 )
+INITIAL_SPRITE_MODULATION = Color( 15.62, 0, 0, 1 )
+
+[node name="ToneStones3" type="Node2D" parent="."]
+position = Vector2( 275, 380 )
+
+[node name="StoneG2" parent="ToneStones3" instance=ExtResource( 6 )]
+position = Vector2( -42, -76 )
+AUDIO_SAMPLE = ExtResource( 5 )
+INITIAL_SPRITE_MODULATION = Color( 0, 52.2941, 0, 1 )
+
+[node name="StoneG1" parent="ToneStones3" instance=ExtResource( 6 )]
+position = Vector2( -79, 7 )
+AUDIO_SAMPLE = ExtResource( 7 )
+INITIAL_SPRITE_MODULATION = Color( 50, 0, 50, 1 )
+
+[node name="StoneF2" parent="ToneStones3" instance=ExtResource( 6 )]
+position = Vector2( -26, -29 )
+AUDIO_SAMPLE = ExtResource( 9 )
+INITIAL_SPRITE_MODULATION = Color( 0, 75.4549, 0.729412, 1 )
+
+[node name="StoneF1" parent="ToneStones3" instance=ExtResource( 6 )]
+position = Vector2( -91, -60 )
+AUDIO_SAMPLE = ExtResource( 8 )
+INITIAL_SPRITE_MODULATION = Color( 80.35, 0, 0.56, 1 )
+
+[node name="StoneF3" parent="ToneStones3" instance=ExtResource( 6 )]
+position = Vector2( -42, 5 )
+AUDIO_SAMPLE = ExtResource( 10 )
+INITIAL_SPRITE_MODULATION = Color( 15.62, 0, 0, 1 )
+
+[node name="StoneG2_2" parent="ToneStones3" instance=ExtResource( 6 )]
+position = Vector2( -17, -49 )
+AUDIO_SAMPLE = ExtResource( 5 )
+INITIAL_SPRITE_MODULATION = Color( 0, 50, 0, 1 )
+
+[node name="StoneG1_2" parent="ToneStones3" instance=ExtResource( 6 )]
+position = Vector2( -83, -21 )
+AUDIO_SAMPLE = ExtResource( 7 )
+INITIAL_SPRITE_MODULATION = Color( 50, 0, 50, 1 )
+
+[node name="StoneA2" parent="ToneStones3" instance=ExtResource( 6 )]
+position = Vector2( -27, -7 )
+AUDIO_SAMPLE = ExtResource( 11 )
+INITIAL_SPRITE_MODULATION = Color( 78.61, 79.65, 76.3, 1 )
+
+[node name="StoneF3_2" parent="ToneStones3" instance=ExtResource( 6 )]
+position = Vector2( -61, 8 )
+AUDIO_SAMPLE = ExtResource( 10 )
+INITIAL_SPRITE_MODULATION = Color( 15.62, 0, 0, 1 )
+
+[node name="StoneF2_2" parent="ToneStones3" instance=ExtResource( 6 )]
+position = Vector2( -108, -14 )
+AUDIO_SAMPLE = ExtResource( 9 )
+INITIAL_SPRITE_MODULATION = Color( 0, 75.4549, 0.729412, 1 )
+
+[node name="StoneF1_2" parent="ToneStones3" instance=ExtResource( 6 )]
+position = Vector2( -88, -7 )
+AUDIO_SAMPLE = ExtResource( 8 )
+INITIAL_SPRITE_MODULATION = Color( 80.35, 0, 0.56, 1 )
+
+[node name="StoneD3" parent="ToneStones3" instance=ExtResource( 6 )]
+position = Vector2( -101, 2 )
+AUDIO_SAMPLE = ExtResource( 12 )
+INITIAL_SPRITE_MODULATION = Color( 0.68, 83.14, 0.08, 1 )
+
+[node name="StoneC3" parent="ToneStones3" instance=ExtResource( 6 )]
+position = Vector2( -73, -7 )
+AUDIO_SAMPLE = ExtResource( 13 )
+INITIAL_SPRITE_MODULATION = Color( 0.32, 45.93, 0.94, 1 )
+
+[node name="StoneG2_3" parent="ToneStones3" instance=ExtResource( 6 )]
+position = Vector2( -57, -11 )
+AUDIO_SAMPLE = ExtResource( 5 )
+INITIAL_SPRITE_MODULATION = Color( 0, 50, 0, 1 )
+
+[node name="StoneG1_3" parent="ToneStones3" instance=ExtResource( 6 )]
+position = Vector2( -67, -33 )
+AUDIO_SAMPLE = ExtResource( 7 )
+INITIAL_SPRITE_MODULATION = Color( 50, 0, 50, 1 )
+
+[node name="StoneA2_2" parent="ToneStones3" instance=ExtResource( 6 )]
+position = Vector2( -103, -32 )
+AUDIO_SAMPLE = ExtResource( 11 )
+INITIAL_SPRITE_MODULATION = Color( 78.61, 79.65, 76.3, 1 )
+
+[node name="StoneA1" parent="ToneStones3" instance=ExtResource( 6 )]
+position = Vector2( -92, -39 )
+AUDIO_SAMPLE = ExtResource( 14 )
+INITIAL_SPRITE_MODULATION = Color( 0.68, 45.34, 100, 1 )
+
+[node name="StoneF3_3" parent="ToneStones3" instance=ExtResource( 6 )]
+position = Vector2( -41, -26 )
+AUDIO_SAMPLE = ExtResource( 10 )
+INITIAL_SPRITE_MODULATION = Color( 15.62, 0, 0, 1 )

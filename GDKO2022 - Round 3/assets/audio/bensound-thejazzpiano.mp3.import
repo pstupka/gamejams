@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/bensound-thejazzpiano.mp3-0d142898c4c732c5ef7158e9f0f556ab.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/bensound-thejazzpiano.mp3"
+dest_files=[ "res://.import/bensound-thejazzpiano.mp3-0d142898c4c732c5ef7158e9f0f556ab.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
